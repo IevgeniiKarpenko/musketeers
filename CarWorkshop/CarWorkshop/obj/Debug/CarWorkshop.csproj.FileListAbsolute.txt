@@ -1,0 +1,10 @@
+C:\Users\Ievgenii\Documents\Visual Studio 2017\Projects\CarWorkshop\CarWorkshop\bin\Debug\CarWorkshop.exe.config
+C:\Users\Ievgenii\Documents\Visual Studio 2017\Projects\CarWorkshop\CarWorkshop\bin\Debug\CarWorkshop.exe
+C:\Users\Ievgenii\Documents\Visual Studio 2017\Projects\CarWorkshop\CarWorkshop\bin\Debug\CarWorkshop.pdb
+C:\Users\Ievgenii\Documents\Visual Studio 2017\Projects\CarWorkshop\CarWorkshop\obj\Debug\CarWorkshop.csprojAssemblyReference.cache
+C:\Users\Ievgenii\Documents\Visual Studio 2017\Projects\CarWorkshop\CarWorkshop\obj\Debug\CarWorkshop.CarWorkshopApp.resources
+C:\Users\Ievgenii\Documents\Visual Studio 2017\Projects\CarWorkshop\CarWorkshop\obj\Debug\CarWorkshop.Properties.Resources.resources
+C:\Users\Ievgenii\Documents\Visual Studio 2017\Projects\CarWorkshop\CarWorkshop\obj\Debug\CarWorkshop.csproj.GenerateResource.cache
+C:\Users\Ievgenii\Documents\Visual Studio 2017\Projects\CarWorkshop\CarWorkshop\obj\Debug\CarWorkshop.csproj.CoreCompileInputs.cache
+C:\Users\Ievgenii\Documents\Visual Studio 2017\Projects\CarWorkshop\CarWorkshop\obj\Debug\CarWorkshop.exe
+C:\Users\Ievgenii\Documents\Visual Studio 2017\Projects\CarWorkshop\CarWorkshop\obj\Debug\CarWorkshop.pdb
