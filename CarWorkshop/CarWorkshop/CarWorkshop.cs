@@ -36,9 +36,14 @@ namespace CarWorkshop
             return true;
         }
 
-        public void AddWorkshop(string name, string carTrademark, string city, int postalCode, string country)
+        public bool AddWorkshop(string name, string carTrademark, string city, int postalCode, string country)
         {
+            if (Workshops.ContainsKey(name))
+                return false;
+
             Workshops.Add(name, new Workshop(name, carTrademark, city, postalCode, country));
+
+            return true;
         }
 
         public void CreateAppoitment(string userName, string carTrademark, string companyName, DateTime time)
