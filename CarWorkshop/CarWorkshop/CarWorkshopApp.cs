@@ -12,19 +12,35 @@ namespace CarWorkshop
 {
     public partial class CarWorkshopApp : Form
     {
-        private CarWorkshop carWorkshop;
-        private List<string> cars;
+        public CarWorkshop carWorkshop;
+        
 
         public CarWorkshopApp()
         {
             InitializeComponent();
 
             carWorkshop = new CarWorkshop();
-            cars = new List<string>();
 
-            carWorkshop.Users.Add("Tete", new User("sad", "asda", "city", 123, "aasd"));
-            appUsr_comboBox.DataSource = carWorkshop.Users.Keys.ToList();
+            //Dummy data
+            carWorkshop.Users.Add(new User("sad", "asda", "NYcity", 123, "aasd"));
+            carWorkshop.Workshops.Add(new Workshop("STO", "BMW", "kiev", 000111, "UK"));
 
+            AddBindings();
+        }
+
+        private void AddBindings()
+        {
+            users_dataGridView.DataSource = carWorkshop.Users;
+            workshops_dataGridView.DataSource = carWorkshop.Workshops;
+            app_dataGridView.DataSource = carWorkshop.Appointments;
+
+            appUsr_comboBox.DataSource = carWorkshop.Users;
+            appUsr_comboBox.DisplayMember = "Name";
+
+            appCompany_comboBox.DataSource = carWorkshop.Workshops;
+            appCompany_comboBox.DisplayMember = "Name";
+
+            appCar_comboBox.DataSource = carWorkshop.Cars;
         }
 
         private void createUsr_button_Click(object sender, EventArgs e)
@@ -49,19 +65,11 @@ namespace CarWorkshop
             if(carWorkshop.AddUser(name, email, city, code, country))
             {
                 ClearUserInputData();
-                UpdateAppoitmentComboboxes();
             }
             else
             {
                 MessageBox.Show("User with same Name or Email already exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void UpdateAppoitmentComboboxes()
-        {
-            appUsr_comboBox.DataSource = carWorkshop.Users.Keys.ToList();
-            appCompany_comboBox.DataSource = carWorkshop.Workshops.Keys.ToList();
-            appCar_comboBox.DataSource = cars.ToList();
         }
 
         private void ClearUserInputData()
@@ -94,9 +102,7 @@ namespace CarWorkshop
 
             if (carWorkshop.AddWorkshop(name, mark, city, code, country))
             {
-                cars.Add(mark);
                 ClearWorkshopInputData();
-                UpdateAppoitmentComboboxes();
             }
             else
             {
@@ -111,11 +117,6 @@ namespace CarWorkshop
             wshopCity_textBox.Clear();
             wshopPostal_textBox.Clear();
             wshopCountry_textBox.Clear();
-        }
-
-        private void deleteUser_button_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void createApp_button_Click(object sender, EventArgs e)

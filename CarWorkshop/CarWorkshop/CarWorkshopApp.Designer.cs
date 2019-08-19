@@ -31,9 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.usersTab = new System.Windows.Forms.TabPage();
-            this.deleteUser_button = new System.Windows.Forms.Button();
             this.allUsers_label = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.users_dataGridView = new System.Windows.Forms.DataGridView();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.createUsr_button = new System.Windows.Forms.Button();
             this.usrCountry_textBox = new System.Windows.Forms.TextBox();
             this.usrCountry_label = new System.Windows.Forms.Label();
@@ -46,7 +46,8 @@
             this.usrEmaol_label = new System.Windows.Forms.Label();
             this.usrName_label = new System.Windows.Forms.Label();
             this.workshopsTab = new System.Windows.Forms.TabPage();
-            this.deleteWshop_button = new System.Windows.Forms.Button();
+            this.allShops_label = new System.Windows.Forms.Label();
+            this.workshops_dataGridView = new System.Windows.Forms.DataGridView();
             this.createWorksop_button = new System.Windows.Forms.Button();
             this.wshopCountry_label = new System.Windows.Forms.Label();
             this.wshopPostal_label = new System.Windows.Forms.Label();
@@ -63,20 +64,30 @@
             this.appCompany_comboBox = new System.Windows.Forms.ComboBox();
             this.appCar_comboBox = new System.Windows.Forms.ComboBox();
             this.appUsr_comboBox = new System.Windows.Forms.ComboBox();
-            this.userBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.appDate = new System.Windows.Forms.DateTimePicker();
             this.appDate_label = new System.Windows.Forms.Label();
             this.appCompany_label = new System.Windows.Forms.Label();
             this.appCar_label = new System.Windows.Forms.Label();
             this.appUser_label = new System.Windows.Forms.Label();
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.wshopName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.wshopCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.carTrademark = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usrName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usrCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.app_dataGridView = new System.Windows.Forms.DataGridView();
+            this.appUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.appCar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.appCompany = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.appDateDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl.SuspendLayout();
             this.usersTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.workshopsTab.SuspendLayout();
-            this.appoitmentTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.users_dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
+            this.workshopsTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.workshops_dataGridView)).BeginInit();
+            this.appoitmentTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.app_dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -95,9 +106,8 @@
             // 
             // usersTab
             // 
-            this.usersTab.Controls.Add(this.deleteUser_button);
             this.usersTab.Controls.Add(this.allUsers_label);
-            this.usersTab.Controls.Add(this.dataGridView1);
+            this.usersTab.Controls.Add(this.users_dataGridView);
             this.usersTab.Controls.Add(this.createUsr_button);
             this.usersTab.Controls.Add(this.usrCountry_textBox);
             this.usersTab.Controls.Add(this.usrCountry_label);
@@ -117,16 +127,6 @@
             this.usersTab.Text = "Users";
             this.usersTab.UseVisualStyleBackColor = true;
             // 
-            // deleteUser_button
-            // 
-            this.deleteUser_button.Location = new System.Drawing.Point(152, 181);
-            this.deleteUser_button.Name = "deleteUser_button";
-            this.deleteUser_button.Size = new System.Drawing.Size(100, 23);
-            this.deleteUser_button.TabIndex = 12;
-            this.deleteUser_button.Text = "Delete User";
-            this.deleteUser_button.UseVisualStyleBackColor = true;
-            this.deleteUser_button.Click += new System.EventHandler(this.deleteUser_button_Click);
-            // 
             // allUsers_label
             // 
             this.allUsers_label.AutoSize = true;
@@ -136,13 +136,19 @@
             this.allUsers_label.TabIndex = 11;
             this.allUsers_label.Text = "All users:";
             // 
-            // dataGridView1
+            // users_dataGridView
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(357, 60);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(605, 384);
-            this.dataGridView1.TabIndex = 10;
+            this.users_dataGridView.AutoGenerateColumns = false;
+            this.users_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.users_dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.usrName,
+            this.Email,
+            this.usrCity});
+            this.users_dataGridView.DataSource = this.userBindingSource;
+            this.users_dataGridView.Location = new System.Drawing.Point(357, 60);
+            this.users_dataGridView.Name = "users_dataGridView";
+            this.users_dataGridView.Size = new System.Drawing.Size(605, 384);
+            this.users_dataGridView.TabIndex = 10;
             // 
             // createUsr_button
             // 
@@ -236,7 +242,8 @@
             // 
             // workshopsTab
             // 
-            this.workshopsTab.Controls.Add(this.deleteWshop_button);
+            this.workshopsTab.Controls.Add(this.allShops_label);
+            this.workshopsTab.Controls.Add(this.workshops_dataGridView);
             this.workshopsTab.Controls.Add(this.createWorksop_button);
             this.workshopsTab.Controls.Add(this.wshopCountry_label);
             this.workshopsTab.Controls.Add(this.wshopPostal_label);
@@ -256,14 +263,29 @@
             this.workshopsTab.Text = "Workshops";
             this.workshopsTab.UseVisualStyleBackColor = true;
             // 
-            // deleteWshop_button
+            // allShops_label
             // 
-            this.deleteWshop_button.Location = new System.Drawing.Point(168, 189);
-            this.deleteWshop_button.Name = "deleteWshop_button";
-            this.deleteWshop_button.Size = new System.Drawing.Size(101, 23);
-            this.deleteWshop_button.TabIndex = 12;
-            this.deleteWshop_button.Text = "Delete Worksop";
-            this.deleteWshop_button.UseVisualStyleBackColor = true;
+            this.allShops_label.AutoSize = true;
+            this.allShops_label.Location = new System.Drawing.Point(365, 36);
+            this.allShops_label.Name = "allShops_label";
+            this.allShops_label.Size = new System.Drawing.Size(64, 13);
+            this.allShops_label.TabIndex = 14;
+            this.allShops_label.Text = "Workshops:";
+            // 
+            // workshops_dataGridView
+            // 
+            this.workshops_dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.workshops_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.workshops_dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.wshopName,
+            this.wshopCity,
+            this.carTrademark});
+            this.workshops_dataGridView.Location = new System.Drawing.Point(368, 55);
+            this.workshops_dataGridView.Name = "workshops_dataGridView";
+            this.workshops_dataGridView.Size = new System.Drawing.Size(594, 392);
+            this.workshops_dataGridView.TabIndex = 13;
             // 
             // createWorksop_button
             // 
@@ -357,6 +379,7 @@
             // 
             // appoitmentTab
             // 
+            this.appoitmentTab.Controls.Add(this.app_dataGridView);
             this.appoitmentTab.Controls.Add(this.createApp_button);
             this.appoitmentTab.Controls.Add(this.appCompany_comboBox);
             this.appoitmentTab.Controls.Add(this.appCar_comboBox);
@@ -453,6 +476,82 @@
             this.appUser_label.TabIndex = 0;
             this.appUser_label.Text = "User Name:";
             // 
+            // wshopName
+            // 
+            this.wshopName.DataPropertyName = "Name";
+            this.wshopName.HeaderText = "Name";
+            this.wshopName.Name = "wshopName";
+            // 
+            // wshopCity
+            // 
+            this.wshopCity.DataPropertyName = "City";
+            this.wshopCity.HeaderText = "City";
+            this.wshopCity.Name = "wshopCity";
+            // 
+            // carTrademark
+            // 
+            this.carTrademark.DataPropertyName = "CarTrademark";
+            this.carTrademark.HeaderText = "Car Trademark";
+            this.carTrademark.Name = "carTrademark";
+            // 
+            // usrName
+            // 
+            this.usrName.DataPropertyName = "Name";
+            this.usrName.HeaderText = "Name";
+            this.usrName.Name = "usrName";
+            // 
+            // Email
+            // 
+            this.Email.DataPropertyName = "Email";
+            this.Email.HeaderText = "Email";
+            this.Email.Name = "Email";
+            // 
+            // usrCity
+            // 
+            this.usrCity.DataPropertyName = "City";
+            this.usrCity.HeaderText = "City";
+            this.usrCity.Name = "usrCity";
+            // 
+            // app_dataGridView
+            // 
+            this.app_dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.app_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.app_dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.appUser,
+            this.appCar,
+            this.appCompany,
+            this.appDateDGV});
+            this.app_dataGridView.Location = new System.Drawing.Point(8, 121);
+            this.app_dataGridView.Name = "app_dataGridView";
+            this.app_dataGridView.Size = new System.Drawing.Size(957, 329);
+            this.app_dataGridView.TabIndex = 9;
+            // 
+            // appUser
+            // 
+            this.appUser.DataPropertyName = "UserName";
+            this.appUser.HeaderText = "User";
+            this.appUser.Name = "appUser";
+            // 
+            // appCar
+            // 
+            this.appCar.DataPropertyName = "CarTrademark";
+            this.appCar.HeaderText = "Car Trademark";
+            this.appCar.Name = "appCar";
+            // 
+            // appCompany
+            // 
+            this.appCompany.DataPropertyName = "CompanyName";
+            this.appCompany.HeaderText = "Company";
+            this.appCompany.Name = "appCompany";
+            // 
+            // appDateDGV
+            // 
+            this.appDateDGV.DataPropertyName = "Time";
+            this.appDateDGV.HeaderText = "Date";
+            this.appDateDGV.Name = "appDateDGV";
+            // 
             // CarWorkshopApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -464,13 +563,14 @@
             this.tabControl.ResumeLayout(false);
             this.usersTab.ResumeLayout(false);
             this.usersTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.users_dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.workshopsTab.ResumeLayout(false);
             this.workshopsTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.workshops_dataGridView)).EndInit();
             this.appoitmentTab.ResumeLayout(false);
             this.appoitmentTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.app_dataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -492,10 +592,7 @@
         private System.Windows.Forms.Button createUsr_button;
         private System.Windows.Forms.TextBox usrCountry_textBox;
         private System.Windows.Forms.Label allUsers_label;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource userBindingSource;
+        private System.Windows.Forms.DataGridView users_dataGridView;
         private System.Windows.Forms.TextBox wshopName_textBox;
         private System.Windows.Forms.Label wshopName_label;
         private System.Windows.Forms.Label wshopTrademark_label;
@@ -507,8 +604,6 @@
         private System.Windows.Forms.Label wshopPostal_label;
         private System.Windows.Forms.Label wshopCountry_label;
         private System.Windows.Forms.Button createWorksop_button;
-        private System.Windows.Forms.Button deleteUser_button;
-        private System.Windows.Forms.Button deleteWshop_button;
         private System.Windows.Forms.TabPage appoitmentTab;
         private System.Windows.Forms.Label appCompany_label;
         private System.Windows.Forms.Label appCar_label;
@@ -519,7 +614,20 @@
         private System.Windows.Forms.ComboBox appCar_comboBox;
         private System.Windows.Forms.ComboBox appUsr_comboBox;
         private System.Windows.Forms.DateTimePicker appDate;
-        private System.Windows.Forms.BindingSource userBindingSource1;
+        private System.Windows.Forms.BindingSource userBindingSource;
+        private System.Windows.Forms.DataGridView workshops_dataGridView;
+        private System.Windows.Forms.Label allShops_label;
+        private System.Windows.Forms.DataGridViewTextBoxColumn wshopName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn wshopCity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn carTrademark;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usrName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usrCity;
+        private System.Windows.Forms.DataGridView app_dataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn appUser;
+        private System.Windows.Forms.DataGridViewTextBoxColumn appCar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn appCompany;
+        private System.Windows.Forms.DataGridViewTextBoxColumn appDateDGV;
     }
 }
 

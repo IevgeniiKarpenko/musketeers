@@ -10,18 +10,18 @@ namespace CarWorkshop
     {
         public string Name { get; set; }
         public string Email { get; set; }
+        public string Country;
+        public string City;
 
-        private string _city;
         private int _postalCode;
-        public string _country;
 
         public User(string name, string email, string city, int postalCode, string country)
         {
             Name = name;
             Email = email;
-            _city = city;
+            City = city;
             _postalCode = postalCode;
-            _country = country;
+            Country = country;
         }
     }
 }

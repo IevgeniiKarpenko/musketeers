@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,18 +10,20 @@ namespace CarWorkshop
 {
     public class CarWorkshop
     {
-        public Dictionary<string, User> Users;
-        public Dictionary<string, Workshop> Workshops;
-        public List<Appointment> Appointments;
+        public BindingList<User> Users;
+        public BindingList<Workshop> Workshops;
+        public BindingList<Appointment> Appointments;
+        public BindingList<string> Cars;
 
         private Dictionary<string, string> uniqueUsers;
 
         public CarWorkshop()
         {
-            Users = new Dictionary<string, User>();
-            Workshops = new Dictionary<string, Workshop>();
-            Appointments = new List<Appointment>();
+            Users = new BindingList<User>();
+            Workshops = new BindingList<Workshop>();
+            Appointments = new BindingList<Appointment>();
             uniqueUsers = new Dictionary<string, string>();
+            Cars = new BindingList<string>();
         }
 
         public bool AddUser(string name, string email, string city, int postalCode, string country)
@@ -31,17 +35,18 @@ namespace CarWorkshop
             }
 
             uniqueUsers.Add(name, email);
-            Users.Add(name, new User(name, email, city, postalCode, country));
+            Users.Add(new User(name, email, city, postalCode, country));
 
             return true;
         }
 
         public bool AddWorkshop(string name, string carTrademark, string city, int postalCode, string country)
         {
-            if (Workshops.ContainsKey(name))
-                return false;
+            //if (Workshops.ContainsKey(name))
+            //    return false;
 
-            Workshops.Add(name, new Workshop(name, carTrademark, city, postalCode, country));
+            Workshops.Add(new Workshop(name, carTrademark, city, postalCode, country));
+            Cars.Add(carTrademark);
 
             return true;
         }
@@ -51,16 +56,6 @@ namespace CarWorkshop
             Appointments.Add(new Appointment(userName, carTrademark, companyName, time));
         }
 
-        public void DeleteUser(string name)
-        {
-            Users.Remove(name);
-        }
-
-        public void DeleteWorkshop(string name)
-        {
-            Workshops.Remove(name);
-        }
-
         public void DeleteAppoitment(Appointment appoitment)
         {
             Appointments.Remove(appoitment);
@@ -68,7 +63,7 @@ namespace CarWorkshop
 
         public void DeleteAppoitment(string userName, string carTrademark, string companyName, DateTime time)
         {
-            var appoitment = Appointments.Find(a => 
+            var appoitment = Appointments.FirstOrDefault(a => 
                     a.UserName == userName &&  a.CarTrademark == carTrademark &&
                     a.CompanyName == companyName && a.Time == time);
 
@@ -83,7 +78,7 @@ namespace CarWorkshop
 
         public IEnumerable<Workshop> FindWorkshops(string city)
         {
-            return Workshops.Values.Where(w => w.City == city);
+            return Workshops.Where(w => w.City == city);
         }
     }
 }
