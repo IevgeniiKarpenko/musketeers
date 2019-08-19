@@ -11,17 +11,17 @@ namespace CarWorkshop
         public string Name { get; set; }
         public string CarTrademark { get; set; }
         public string City { get; set; }
+        public string Country { get; set; }
 
         private int _postalCode;
-        public string _country;
 
         public Workshop(string name, string carTrademark, string city, int postalCode, string country)
         {
             Name = name;
             CarTrademark = carTrademark;
             City = city;
+            Country = country;
             _postalCode = postalCode;
-            _country = country;
         }
     }
 }

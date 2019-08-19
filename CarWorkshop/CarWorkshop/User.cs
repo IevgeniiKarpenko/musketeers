@@ -10,8 +10,8 @@ namespace CarWorkshop
     {
         public string Name { get; set; }
         public string Email { get; set; }
-        public string Country;
-        public string City;
+        public string Country { get; set; }
+        public string City { get; set; }
 
         private int _postalCode;
 
@@ -20,8 +20,8 @@ namespace CarWorkshop
             Name = name;
             Email = email;
             City = city;
-            _postalCode = postalCode;
             Country = country;
+            _postalCode = postalCode;
         }
     }
 }

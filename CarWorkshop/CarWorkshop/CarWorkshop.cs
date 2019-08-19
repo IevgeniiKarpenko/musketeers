@@ -15,37 +15,51 @@ namespace CarWorkshop
         public BindingList<Appointment> Appointments;
         public BindingList<string> Cars;
 
-        private Dictionary<string, string> uniqueUsers;
-
         public CarWorkshop()
         {
             Users = new BindingList<User>();
             Workshops = new BindingList<Workshop>();
             Appointments = new BindingList<Appointment>();
-            uniqueUsers = new Dictionary<string, string>();
             Cars = new BindingList<string>();
         }
 
-        public bool AddUser(string name, string email, string city, int postalCode, string country)
+        public bool AddUser(string name, string email, string city, string postalCode, string country)
         {
-            foreach (var user in uniqueUsers)
+            if (string.IsNullOrWhiteSpace(name) ||
+                string.IsNullOrWhiteSpace(email) ||
+                string.IsNullOrWhiteSpace(city) ||
+                string.IsNullOrWhiteSpace(postalCode) ||
+                string.IsNullOrWhiteSpace(country) ||
+                !int.TryParse(postalCode, out var code))
             {
-                if (name == user.Key || email == user.Value)
-                    return false;
+                return false;
             }
 
-            uniqueUsers.Add(name, email);
-            Users.Add(new User(name, email, city, postalCode, country));
+            if (Users.Any(u => u.Name == name || u.Email == email))
+                return false;
+
+            Users.Add(new User(name, email, city, code, country));
 
             return true;
         }
 
-        public bool AddWorkshop(string name, string carTrademark, string city, int postalCode, string country)
+        public bool AddWorkshop(string name, string carTrademark, string city, string postalCode, string country)
         {
-            //if (Workshops.ContainsKey(name))
-            //    return false;
+            if (Workshops.Any(w => w.Name == name))
+                return false;
 
-            Workshops.Add(new Workshop(name, carTrademark, city, postalCode, country));
+            if (string.IsNullOrWhiteSpace(name) ||
+            string.IsNullOrWhiteSpace(carTrademark) ||
+            string.IsNullOrWhiteSpace(city) ||
+            string.IsNullOrWhiteSpace(postalCode) ||
+            string.IsNullOrWhiteSpace(country) ||
+            !int.TryParse(postalCode, out var code))
+            {
+                return false;
+            }
+
+
+            Workshops.Add(new Workshop(name, carTrademark, city, code, country));
             Cars.Add(carTrademark);
 
             return true;
@@ -79,6 +93,17 @@ namespace CarWorkshop
         public IEnumerable<Workshop> FindWorkshops(string city)
         {
             return Workshops.Where(w => w.City == city);
+        }
+
+
+        public BindingList<Workshop> GetWorkshopsForCity(string city)
+        {
+            if (string.IsNullOrWhiteSpace(city))
+                return null;
+
+            var res = Workshops.Where(w => w.City == city).ToList();
+
+            return new BindingList<Workshop>(res);
         }
     }
 }

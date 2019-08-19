@@ -22,8 +22,11 @@ namespace CarWorkshop
             carWorkshop = new CarWorkshop();
 
             //Dummy data
-            carWorkshop.Users.Add(new User("sad", "asda", "NYcity", 123, "aasd"));
-            carWorkshop.Workshops.Add(new Workshop("STO", "BMW", "kiev", 000111, "UK"));
+            carWorkshop.AddUser("Ivan", "Ivanov", "NY city", "12300", "USA");
+            carWorkshop.AddUser("John", "Smith", "kyiv", "54300", "Ukraine");
+
+            carWorkshop.AddWorkshop("STO", "BMW", "kiev", "000111", "UK");
+            carWorkshop.AddWorkshop("STO 2", "VW", "Borispol", "04011", "UA");
 
             AddBindings();
         }
@@ -51,24 +54,13 @@ namespace CarWorkshop
             string postalCode = usrPostal_textBox.Text;
             string country = usrCountry_textBox.Text;
 
-            if(string.IsNullOrWhiteSpace(name) ||
-                string.IsNullOrWhiteSpace(email) ||
-                string.IsNullOrWhiteSpace(city) ||
-                string.IsNullOrWhiteSpace(postalCode) ||
-                string.IsNullOrWhiteSpace(country) ||
-                !int.TryParse(postalCode, out var code))
-            {
-                MessageBox.Show("Please input correct data", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                return;
-            }
-
-            if(carWorkshop.AddUser(name, email, city, code, country))
+            if(carWorkshop.AddUser(name, email, city, postalCode, country))
             {
                 ClearUserInputData();
             }
             else
             {
-                MessageBox.Show("User with same Name or Email already exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please input correct data", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
         }
 
@@ -89,24 +81,13 @@ namespace CarWorkshop
             string postalCode = wshopPostal_textBox.Text;
             string country = wshopCountry_textBox.Text;
 
-            if (string.IsNullOrWhiteSpace(name) ||
-                string.IsNullOrWhiteSpace(mark) ||
-                string.IsNullOrWhiteSpace(city) ||
-                string.IsNullOrWhiteSpace(postalCode) ||
-                string.IsNullOrWhiteSpace(country) ||
-                !int.TryParse(postalCode, out var code))
-            {
-                MessageBox.Show("Please input correct data", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                return;
-            }
-
-            if (carWorkshop.AddWorkshop(name, mark, city, code, country))
+            if (carWorkshop.AddWorkshop(name, mark, city, postalCode, country))
             {
                 ClearWorkshopInputData();
             }
             else
             {
-                MessageBox.Show("Workshop with same Name already exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please input correct data", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
         }
 
@@ -137,6 +118,17 @@ namespace CarWorkshop
 
             Appointment app = new Appointment(user, company, car, date);
             carWorkshop.Appointments.Add(app);
+        }
+
+        private void filter_button_Click(object sender, EventArgs e)
+        {
+            workshops_dataGridView.DataSource = carWorkshop.GetWorkshopsForCity(cityFilter_textBox.Text);
+        }
+
+        private void wshopResetFilter_button_Click(object sender, EventArgs e)
+        {
+            workshops_dataGridView.DataSource = carWorkshop.Workshops;
+            cityFilter_textBox.Clear();
         }
     }
 }

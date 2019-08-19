@@ -33,6 +33,10 @@
             this.usersTab = new System.Windows.Forms.TabPage();
             this.allUsers_label = new System.Windows.Forms.Label();
             this.users_dataGridView = new System.Windows.Forms.DataGridView();
+            this.usrName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usrCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usrCountry = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.createUsr_button = new System.Windows.Forms.Button();
             this.usrCountry_textBox = new System.Windows.Forms.TextBox();
@@ -48,6 +52,10 @@
             this.workshopsTab = new System.Windows.Forms.TabPage();
             this.allShops_label = new System.Windows.Forms.Label();
             this.workshops_dataGridView = new System.Windows.Forms.DataGridView();
+            this.wshopName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.wshopCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.carTrademark = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.wshopCountry = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createWorksop_button = new System.Windows.Forms.Button();
             this.wshopCountry_label = new System.Windows.Forms.Label();
             this.wshopPostal_label = new System.Windows.Forms.Label();
@@ -60,6 +68,7 @@
             this.wshopName_textBox = new System.Windows.Forms.TextBox();
             this.wshopName_label = new System.Windows.Forms.Label();
             this.appoitmentTab = new System.Windows.Forms.TabPage();
+            this.app_dataGridView = new System.Windows.Forms.DataGridView();
             this.createApp_button = new System.Windows.Forms.Button();
             this.appCompany_comboBox = new System.Windows.Forms.ComboBox();
             this.appCar_comboBox = new System.Windows.Forms.ComboBox();
@@ -69,17 +78,17 @@
             this.appCompany_label = new System.Windows.Forms.Label();
             this.appCar_label = new System.Windows.Forms.Label();
             this.appUser_label = new System.Windows.Forms.Label();
-            this.wshopName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.wshopCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.carTrademark = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.usrName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.usrCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.app_dataGridView = new System.Windows.Forms.DataGridView();
             this.appUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.appCar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.appCompany = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.appDateDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cityFilter_label = new System.Windows.Forms.Label();
+            this.cityFilter_textBox = new System.Windows.Forms.TextBox();
+            this.filter_button = new System.Windows.Forms.Button();
+            this.wshopResetFilter_button = new System.Windows.Forms.Button();
+            this.deleteTooltip_label = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.usersTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.users_dataGridView)).BeginInit();
@@ -106,6 +115,7 @@
             // 
             // usersTab
             // 
+            this.usersTab.Controls.Add(this.label1);
             this.usersTab.Controls.Add(this.allUsers_label);
             this.usersTab.Controls.Add(this.users_dataGridView);
             this.usersTab.Controls.Add(this.createUsr_button);
@@ -138,17 +148,49 @@
             // 
             // users_dataGridView
             // 
+            this.users_dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.users_dataGridView.AutoGenerateColumns = false;
             this.users_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.users_dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.usrName,
             this.Email,
-            this.usrCity});
+            this.usrCity,
+            this.usrCountry});
             this.users_dataGridView.DataSource = this.userBindingSource;
             this.users_dataGridView.Location = new System.Drawing.Point(357, 60);
             this.users_dataGridView.Name = "users_dataGridView";
             this.users_dataGridView.Size = new System.Drawing.Size(605, 384);
             this.users_dataGridView.TabIndex = 10;
+            // 
+            // usrName
+            // 
+            this.usrName.DataPropertyName = "Name";
+            this.usrName.HeaderText = "Name";
+            this.usrName.Name = "usrName";
+            this.usrName.ReadOnly = true;
+            // 
+            // Email
+            // 
+            this.Email.DataPropertyName = "Email";
+            this.Email.HeaderText = "Email";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            // 
+            // usrCity
+            // 
+            this.usrCity.DataPropertyName = "City";
+            this.usrCity.HeaderText = "City";
+            this.usrCity.Name = "usrCity";
+            this.usrCity.ReadOnly = true;
+            // 
+            // usrCountry
+            // 
+            this.usrCountry.DataPropertyName = "Country";
+            this.usrCountry.HeaderText = "Country";
+            this.usrCountry.Name = "usrCountry";
+            this.usrCountry.ReadOnly = true;
             // 
             // createUsr_button
             // 
@@ -242,6 +284,11 @@
             // 
             // workshopsTab
             // 
+            this.workshopsTab.Controls.Add(this.deleteTooltip_label);
+            this.workshopsTab.Controls.Add(this.wshopResetFilter_button);
+            this.workshopsTab.Controls.Add(this.filter_button);
+            this.workshopsTab.Controls.Add(this.cityFilter_textBox);
+            this.workshopsTab.Controls.Add(this.cityFilter_label);
             this.workshopsTab.Controls.Add(this.allShops_label);
             this.workshopsTab.Controls.Add(this.workshops_dataGridView);
             this.workshopsTab.Controls.Add(this.createWorksop_button);
@@ -281,11 +328,40 @@
             this.workshops_dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.wshopName,
             this.wshopCity,
-            this.carTrademark});
+            this.carTrademark,
+            this.wshopCountry});
             this.workshops_dataGridView.Location = new System.Drawing.Point(368, 55);
             this.workshops_dataGridView.Name = "workshops_dataGridView";
             this.workshops_dataGridView.Size = new System.Drawing.Size(594, 392);
             this.workshops_dataGridView.TabIndex = 13;
+            // 
+            // wshopName
+            // 
+            this.wshopName.DataPropertyName = "Name";
+            this.wshopName.HeaderText = "Name";
+            this.wshopName.Name = "wshopName";
+            this.wshopName.ReadOnly = true;
+            // 
+            // wshopCity
+            // 
+            this.wshopCity.DataPropertyName = "City";
+            this.wshopCity.HeaderText = "City";
+            this.wshopCity.Name = "wshopCity";
+            this.wshopCity.ReadOnly = true;
+            // 
+            // carTrademark
+            // 
+            this.carTrademark.DataPropertyName = "CarTrademark";
+            this.carTrademark.HeaderText = "Car Trademark";
+            this.carTrademark.Name = "carTrademark";
+            this.carTrademark.ReadOnly = true;
+            // 
+            // wshopCountry
+            // 
+            this.wshopCountry.DataPropertyName = "Country";
+            this.wshopCountry.HeaderText = "Country";
+            this.wshopCountry.Name = "wshopCountry";
+            this.wshopCountry.ReadOnly = true;
             // 
             // createWorksop_button
             // 
@@ -379,6 +455,7 @@
             // 
             // appoitmentTab
             // 
+            this.appoitmentTab.Controls.Add(this.label2);
             this.appoitmentTab.Controls.Add(this.app_dataGridView);
             this.appoitmentTab.Controls.Add(this.createApp_button);
             this.appoitmentTab.Controls.Add(this.appCompany_comboBox);
@@ -395,6 +472,22 @@
             this.appoitmentTab.TabIndex = 2;
             this.appoitmentTab.Text = "Appoitments";
             this.appoitmentTab.UseVisualStyleBackColor = true;
+            // 
+            // app_dataGridView
+            // 
+            this.app_dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.app_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.app_dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.appUser,
+            this.appCar,
+            this.appCompany,
+            this.appDateDGV});
+            this.app_dataGridView.Location = new System.Drawing.Point(8, 121);
+            this.app_dataGridView.Name = "app_dataGridView";
+            this.app_dataGridView.Size = new System.Drawing.Size(957, 329);
+            this.app_dataGridView.TabIndex = 9;
             // 
             // createApp_button
             // 
@@ -476,75 +569,26 @@
             this.appUser_label.TabIndex = 0;
             this.appUser_label.Text = "User Name:";
             // 
-            // wshopName
-            // 
-            this.wshopName.DataPropertyName = "Name";
-            this.wshopName.HeaderText = "Name";
-            this.wshopName.Name = "wshopName";
-            // 
-            // wshopCity
-            // 
-            this.wshopCity.DataPropertyName = "City";
-            this.wshopCity.HeaderText = "City";
-            this.wshopCity.Name = "wshopCity";
-            // 
-            // carTrademark
-            // 
-            this.carTrademark.DataPropertyName = "CarTrademark";
-            this.carTrademark.HeaderText = "Car Trademark";
-            this.carTrademark.Name = "carTrademark";
-            // 
-            // usrName
-            // 
-            this.usrName.DataPropertyName = "Name";
-            this.usrName.HeaderText = "Name";
-            this.usrName.Name = "usrName";
-            // 
-            // Email
-            // 
-            this.Email.DataPropertyName = "Email";
-            this.Email.HeaderText = "Email";
-            this.Email.Name = "Email";
-            // 
-            // usrCity
-            // 
-            this.usrCity.DataPropertyName = "City";
-            this.usrCity.HeaderText = "City";
-            this.usrCity.Name = "usrCity";
-            // 
-            // app_dataGridView
-            // 
-            this.app_dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.app_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.app_dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.appUser,
-            this.appCar,
-            this.appCompany,
-            this.appDateDGV});
-            this.app_dataGridView.Location = new System.Drawing.Point(8, 121);
-            this.app_dataGridView.Name = "app_dataGridView";
-            this.app_dataGridView.Size = new System.Drawing.Size(957, 329);
-            this.app_dataGridView.TabIndex = 9;
-            // 
             // appUser
             // 
             this.appUser.DataPropertyName = "UserName";
             this.appUser.HeaderText = "User";
             this.appUser.Name = "appUser";
+            this.appUser.ReadOnly = true;
             // 
             // appCar
             // 
             this.appCar.DataPropertyName = "CarTrademark";
             this.appCar.HeaderText = "Car Trademark";
             this.appCar.Name = "appCar";
+            this.appCar.ReadOnly = true;
             // 
             // appCompany
             // 
             this.appCompany.DataPropertyName = "CompanyName";
             this.appCompany.HeaderText = "Company";
             this.appCompany.Name = "appCompany";
+            this.appCompany.ReadOnly = true;
             // 
             // appDateDGV
             // 
@@ -552,12 +596,81 @@
             this.appDateDGV.HeaderText = "Date";
             this.appDateDGV.Name = "appDateDGV";
             // 
+            // cityFilter_label
+            // 
+            this.cityFilter_label.AutoSize = true;
+            this.cityFilter_label.Location = new System.Drawing.Point(28, 235);
+            this.cityFilter_label.Name = "cityFilter_label";
+            this.cityFilter_label.Size = new System.Drawing.Size(66, 13);
+            this.cityFilter_label.TabIndex = 15;
+            this.cityFilter_label.Text = "Filter for city:";
+            // 
+            // cityFilter_textBox
+            // 
+            this.cityFilter_textBox.Location = new System.Drawing.Point(100, 232);
+            this.cityFilter_textBox.Name = "cityFilter_textBox";
+            this.cityFilter_textBox.Size = new System.Drawing.Size(100, 20);
+            this.cityFilter_textBox.TabIndex = 16;
+            // 
+            // filter_button
+            // 
+            this.filter_button.Location = new System.Drawing.Point(28, 272);
+            this.filter_button.Name = "filter_button";
+            this.filter_button.Size = new System.Drawing.Size(75, 23);
+            this.filter_button.TabIndex = 17;
+            this.filter_button.Text = "Filter";
+            this.filter_button.UseVisualStyleBackColor = true;
+            this.filter_button.Click += new System.EventHandler(this.filter_button_Click);
+            // 
+            // wshopResetFilter_button
+            // 
+            this.wshopResetFilter_button.Location = new System.Drawing.Point(143, 272);
+            this.wshopResetFilter_button.Name = "wshopResetFilter_button";
+            this.wshopResetFilter_button.Size = new System.Drawing.Size(75, 23);
+            this.wshopResetFilter_button.TabIndex = 18;
+            this.wshopResetFilter_button.Text = "Reset filter";
+            this.wshopResetFilter_button.UseVisualStyleBackColor = true;
+            this.wshopResetFilter_button.Click += new System.EventHandler(this.wshopResetFilter_button_Click);
+            // 
+            // deleteTooltip_label
+            // 
+            this.deleteTooltip_label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.deleteTooltip_label.AutoSize = true;
+            this.deleteTooltip_label.Location = new System.Drawing.Point(28, 425);
+            this.deleteTooltip_label.Name = "deleteTooltip_label";
+            this.deleteTooltip_label.Size = new System.Drawing.Size(225, 13);
+            this.deleteTooltip_label.TabIndex = 19;
+            this.deleteTooltip_label.Text = "* for delete: select row and press \"Delete\" key";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(22, 419);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(225, 13);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "* for delete: select row and press \"Delete\" key";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(733, 97);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(225, 13);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "* for delete: select row and press \"Delete\" key";
+            // 
             // CarWorkshopApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(974, 478);
             this.Controls.Add(this.tabControl);
+            this.MinimumSize = new System.Drawing.Size(990, 516);
             this.Name = "CarWorkshopApp";
             this.Text = "CarWorkshop";
             this.tabControl.ResumeLayout(false);
@@ -617,17 +730,26 @@
         private System.Windows.Forms.BindingSource userBindingSource;
         private System.Windows.Forms.DataGridView workshops_dataGridView;
         private System.Windows.Forms.Label allShops_label;
-        private System.Windows.Forms.DataGridViewTextBoxColumn wshopName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn wshopCity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn carTrademark;
+        private System.Windows.Forms.DataGridView app_dataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn usrName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn usrCity;
-        private System.Windows.Forms.DataGridView app_dataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usrCountry;
+        private System.Windows.Forms.DataGridViewTextBoxColumn wshopName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn wshopCity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn carTrademark;
+        private System.Windows.Forms.DataGridViewTextBoxColumn wshopCountry;
         private System.Windows.Forms.DataGridViewTextBoxColumn appUser;
         private System.Windows.Forms.DataGridViewTextBoxColumn appCar;
         private System.Windows.Forms.DataGridViewTextBoxColumn appCompany;
         private System.Windows.Forms.DataGridViewTextBoxColumn appDateDGV;
+        private System.Windows.Forms.Button filter_button;
+        private System.Windows.Forms.TextBox cityFilter_textBox;
+        private System.Windows.Forms.Label cityFilter_label;
+        private System.Windows.Forms.Button wshopResetFilter_button;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label deleteTooltip_label;
+        private System.Windows.Forms.Label label2;
     }
 }
 
