@@ -65,36 +65,24 @@ namespace CarWorkshop
             return true;
         }
 
-        public void CreateAppoitment(string userName, string carTrademark, string companyName, DateTime time)
+        public bool CreateAppoitment(string userName, string carTrademark, string companyName, DateTime time)
         {
+            if (string.IsNullOrWhiteSpace(userName) ||
+                string.IsNullOrWhiteSpace(carTrademark) ||
+                string.IsNullOrWhiteSpace(companyName) ||
+                time < DateTime.Now)
+            {
+                return false;
+            }
+
             Appointments.Add(new Appointment(userName, carTrademark, companyName, time));
-        }
-
-        public void DeleteAppoitment(Appointment appoitment)
-        {
-            Appointments.Remove(appoitment);
-        }
-
-        public void DeleteAppoitment(string userName, string carTrademark, string companyName, DateTime time)
-        {
-            var appoitment = Appointments.FirstOrDefault(a => 
-                    a.UserName == userName &&  a.CarTrademark == carTrademark &&
-                    a.CompanyName == companyName && a.Time == time);
-
-            if (appoitment != null)
-                Appointments.Remove(appoitment);
-        }
-
-        public void ChangeAppoitmentTime(Appointment appointment, DateTime time)
-        {
-            appointment.Time = time;
+            return true;
         }
 
         public IEnumerable<Workshop> FindWorkshops(string city)
         {
             return Workshops.Where(w => w.City == city);
         }
-
 
         public BindingList<Workshop> GetWorkshopsForCity(string city)
         {

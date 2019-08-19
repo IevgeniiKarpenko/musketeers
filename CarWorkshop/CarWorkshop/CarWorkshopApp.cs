@@ -107,17 +107,10 @@ namespace CarWorkshop
             string car = appCar_comboBox.Text;
             DateTime date = appDate.Value;
 
-            if (string.IsNullOrWhiteSpace(user) ||
-                string.IsNullOrWhiteSpace(company) ||
-                string.IsNullOrWhiteSpace(car) ||
-                date < DateTime.Now)
-            {
+            if(!carWorkshop.CreateAppoitment(user, company, car, date))
+            { 
                 MessageBox.Show("Please input correct data", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                return;
             }
-
-            Appointment app = new Appointment(user, company, car, date);
-            carWorkshop.Appointments.Add(app);
         }
 
         private void filter_button_Click(object sender, EventArgs e)
