@@ -7,3 +7,7 @@
 
 CarWorkshop/.vs/
 CarWorkshop/CarWorkshop/obj/
+GZipTest/GZipTest/bin/
+GZipTest/GZipTest/obj/
+*.csproj.user
+GZipTest/.vs/
